@@ -1,0 +1,27 @@
+/* Absolute path */
+body { background: url('/images/ajax-loader.gif'); }
+
+/* Relative path */
+body { background: url('/oops/../images/ajax-loader.gif'); }
+body { background: url('../images/ajax-loader.gif'); }
+body { background: url('../oops/../images/ajax-loader.gif'); }
+
+/* Delimiters */
+body { background: url("/images/ajax-loader.gif"); }
+body { background: url(/images/ajax-loader.gif); }
+body { background: url( /images/ajax-loader.gif    ); }
+
+/* Case insensitive */
+body { background: url('/IMAGES/ajax-loader.gif'); }
+
+/* With query string */
+body { background: url('/images/ajax-loader.gif?a=b'); }
+
+/* Invalid */
+body { background: url('ajax-loader.gif'); }
+body { background: url('/images/ajax-loader'); }
+body { background: url('/images/ajax-loader.gif.bak'); }
+body { background: url('images/ajax-loader.gif'); }
+body { background: url('/more/images/ajax-loader.gif'); }
+body { background: url('/cool_images/ajax-loader.gif'); }
+body { background: url('http://othersite.com/images/ajax-loader.gif'); }
