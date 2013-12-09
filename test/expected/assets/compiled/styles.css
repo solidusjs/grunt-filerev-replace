@@ -14,8 +14,9 @@ body { background: url(/images/ajax-loader.4e26f87c.gif); }
 /* Case insensitive */
 body { background: url('/images/ajax-loader.4e26f87c.gif'); }
 
-/* With query string */
+/* With query string and anchor */
 body { background: url('/images/ajax-loader.4e26f87c.gif?a=b'); }
+body { background: url('/images/ajax-loader.4e26f87c.gif#a'); }
 
 /* Invalid */
 body { background: url('ajax-loader.gif'); }

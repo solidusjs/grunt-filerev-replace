@@ -14,8 +14,9 @@ var path = "var path = '/images/ajax-loader.gif';";
 // Case insensitive
 var path = '/IMAGES/ajax-loader.gif';
 
-// With query string
+// With query string and anchor
 var path = '/images/ajax-loader.gif?a=b';
+var path = '/images/ajax-loader.gif#a';
 
 // Invalid
 var path = 'ajax-loader.gif';

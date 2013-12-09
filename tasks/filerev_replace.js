@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 
       assets[src] = {
         dest: dest,
-        regexp: new RegExp( '[^\'"\\(]*'+ regexp_escape( src ) +'[^\\?\'"\\)]*', 'ig' )
+        regexp: new RegExp( '[^\'"\\(]*'+ regexp_escape( src ) +'[^\\?#\'"\\)]*', 'ig' )
       };
     }
     return assets;
