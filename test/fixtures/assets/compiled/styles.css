@@ -4,7 +4,7 @@ body { background: url('/images/ajax-loader.gif'); }
 /* Relative path */
 body { background: url('/oops/../images/ajax-loader.gif'); }
 body { background: url('../images/ajax-loader.gif'); }
-body { background: url('../oops/../images/ajax-loader.gif'); }
+body { background: url('../oops/../images/oops/../ajax-loader.gif'); }
 
 /* Delimiters */
 body { background: url("/images/ajax-loader.gif"); }
@@ -23,6 +23,7 @@ body { background: url('/images/ajax-loader.gif#a'); }
 body { background: url('ajax-loader.gif'); }
 body { background: url('/images/ajax-loader'); }
 body { background: url('/images/ajax-loader.gif.bak'); }
+body { background: url('/images/not-ajax-loader.gif'); }
 body { background: url('images/ajax-loader.gif'); }
 body { background: url('/more/images/ajax-loader.gif'); }
 body { background: url('/cool_images/ajax-loader.gif'); }

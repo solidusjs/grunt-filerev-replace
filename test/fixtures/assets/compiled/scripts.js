@@ -4,7 +4,7 @@ var path = '/images/ajax-loader.gif';
 // Relative path
 var path = '/oops/../images/ajax-loader.gif';
 var path = '../images/ajax-loader.gif';
-var path = '../oops/../images/ajax-loader.gif';
+var path = '../oops/../images/oops/../ajax-loader.gif';
 
 // Delimiters
 var path = "/images/ajax-loader.gif";
@@ -23,6 +23,7 @@ var path = '/images/ajax-loader.gif#a';
 var path = 'ajax-loader.gif';
 var path = '/images/ajax-loader';
 var path = '/images/ajax-loader.gif.bak';
+var path = '/images/not-ajax-loader.gif';
 var path = 'images/ajax-loader.gif';
 var path = '/more/images/ajax-loader.gif';
 var path = '/cool_images/ajax-loader.gif';

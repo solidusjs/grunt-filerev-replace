@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
   function asset_path_regexp( asset_path ) {
     return new RegExp( STARTING_DELIMITER + // p1
-                       ASSET_PATH_START + escape_for_regexp( asset_path ) + ASSET_PATH_END + // p2
+                       ASSET_PATH_START + escape_for_regexp( path.basename( asset_path ) ) + ASSET_PATH_END + // p2
                        ENDING_DELIMITER, // p3
                        'ig' );
   }

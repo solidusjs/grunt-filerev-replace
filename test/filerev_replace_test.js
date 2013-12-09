@@ -24,6 +24,15 @@ exports.filerev_replace = {
   html: function(test) {
     test.expect(1);
 
+    var actual = grunt.file.read('tmp/views/index.html');
+    var expected = grunt.file.read('test/expected/views/index.html');
+    test.equal(actual, expected);
+
+    test.done();
+  },
+  html_subfolder: function(test) {
+    test.expect(1);
+
     var actual = grunt.file.read('tmp/views/media/index.html');
     var expected = grunt.file.read('test/expected/views/media/index.html');
     test.equal(actual, expected);

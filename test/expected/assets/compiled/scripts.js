@@ -23,6 +23,7 @@ var path = '/images/ajax-loader.4e26f87c.gif#a';
 var path = 'ajax-loader.gif';
 var path = '/images/ajax-loader';
 var path = '/images/ajax-loader.gif.bak';
+var path = '/images/not-ajax-loader.gif';
 var path = 'images/ajax-loader.gif';
 var path = '/more/images/ajax-loader.gif';
 var path = '/cool_images/ajax-loader.gif';
