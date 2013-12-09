@@ -10,6 +10,7 @@ var path = '/images/ajax-loader.4e26f87c.gif';
 var path = "/images/ajax-loader.4e26f87c.gif";
 var path = '<img src="/images/ajax-loader.4e26f87c.gif" />';
 var path = "var path = '/images/ajax-loader.4e26f87c.gif';";
+var path = '/images/ajax-loader.4e26f87c.gif', path = "/images/ajax-loader.4e26f87c.gif";
 
 // Case insensitive
 var path = '/images/ajax-loader.4e26f87c.gif';

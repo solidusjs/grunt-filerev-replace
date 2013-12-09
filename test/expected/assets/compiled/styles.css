@@ -10,6 +10,7 @@ body { background: url('/images/ajax-loader.4e26f87c.gif'); }
 body { background: url("/images/ajax-loader.4e26f87c.gif"); }
 body { background: url(/images/ajax-loader.4e26f87c.gif); }
 body { background: url(/images/ajax-loader.4e26f87c.gif); }
+body { background: url('/images/ajax-loader.4e26f87c.gif'); background: url("/images/ajax-loader.4e26f87c.gif"); }
 
 /* Case insensitive */
 body { background: url('/images/ajax-loader.4e26f87c.gif'); }

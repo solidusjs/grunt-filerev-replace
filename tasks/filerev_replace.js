@@ -10,6 +10,13 @@
 
 var path = require('path');
 
+var STARTING_DELIMITERS = '\'"\\('; 
+var ENDING_DELIMITERS   = '\'"\\)\\?#'; 
+var STARTING_DELIMITER  = '([' + STARTING_DELIMITERS + '])';
+var ENDING_DELIMITER    = '([' + ENDING_DELIMITERS + '])';
+var ASSET_PATH_START    = '([^' + ENDING_DELIMITERS + ']*';
+var ASSET_PATH_END      = '[^' + ENDING_DELIMITERS + ']*)';
+
 module.exports = function(grunt) {
   grunt.registerMultiTask('filerev_replace', 'Replace references to grunt-filerev files.', function() {
     var assets_root = this.options().assets_root;
@@ -27,11 +34,8 @@ module.exports = function(grunt) {
     for( var path in grunt.filerev.summary ){
       var src = file_path_to_web_path( path, assets_root );
       var dest = file_path_to_web_path( grunt.filerev.summary[path], assets_root );
-
-      assets[src] = {
-        dest: dest,
-        regexp: new RegExp( '[^\'"\\(]*'+ regexp_escape( src ) +'[^\\?#\'"\\)]*', 'ig' )
-      };
+      var regexp = asset_path_regexp( src );
+      assets[src] = { dest: dest, regexp: regexp };
     }
     return assets;
   }
@@ -43,7 +47,14 @@ module.exports = function(grunt) {
     return path.join( '/', path.relative( root, file_path ) );
   }
 
-  function regexp_escape( string ) {
+  function asset_path_regexp( asset_path ) {
+    return new RegExp( STARTING_DELIMITER + // p1
+                       ASSET_PATH_START + escape_for_regexp( asset_path ) + ASSET_PATH_END + // p2
+                       ENDING_DELIMITER, // p3
+                       'ig' );
+  }
+
+  function escape_for_regexp( string ) {
     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
   }
 
@@ -51,14 +62,14 @@ module.exports = function(grunt) {
     var view = grunt.file.read( view_src );
     var changes = [];
 
-    var replace_string = function(string) {
-      var view_asset_path = string_to_view_asset_path( string, view_src, views_root );
+    var replace_string = function( match, p1, p2, p3 ) {
+      var asset_path = absolute_asset_path( p2, view_src, views_root );
 
-      if( grunt.file.arePathsEquivalent( view_asset_path.toLowerCase(), asset_src.toLowerCase() ) ) {
+      if( grunt.file.arePathsEquivalent( asset_path.toLowerCase(), asset_src.toLowerCase() ) ) {
         changed = true;
-        return asset_dest;
+        return p1 + asset_dest + p3;
       } else {
-        return string;
+        return match;
       }
     };
 
@@ -77,13 +88,13 @@ module.exports = function(grunt) {
     return changes;
   }
 
-  function string_to_view_asset_path( string, view_src, views_root ) {
-    var view_asset_path = string.trim();
-    if( !grunt.file.isPathAbsolute( view_asset_path ) ) {
-      view_asset_path = path.join( path.dirname( view_src ), view_asset_path );
-      view_asset_path = file_path_to_web_path( view_asset_path, views_root );
+  function absolute_asset_path( string, view_src, views_root ) {
+    var asset_path = string.trim();
+    if( !grunt.file.isPathAbsolute( asset_path ) ) {
+      asset_path = path.join( path.dirname( view_src ), asset_path );
+      asset_path = file_path_to_web_path( asset_path, views_root );
     }
-    return view_asset_path;
+    return asset_path;
   }
 
   function log_view_changes( view_src, changes ) {
