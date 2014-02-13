@@ -1,6 +1,6 @@
 /*
  * grunt-filerev-replace
- * https://github.com/SparkartGroupInc/grunt-filerev-replace
+ * https://github.com/solidusjs/grunt-filerev-replace
  *
  * Copyright (c) 2013 Sparkart Group, Inc.
  * Licensed under the MIT license.
@@ -10,8 +10,8 @@
 
 var path = require('path');
 
-var STARTING_DELIMITERS = '\'"\\('; 
-var ENDING_DELIMITERS   = '\'"\\)\\?#'; 
+var STARTING_DELIMITERS = '\'"\\(';
+var ENDING_DELIMITERS   = '\'"\\)\\?#';
 var STARTING_DELIMITER  = '([' + STARTING_DELIMITERS + '])';
 var ENDING_DELIMITER    = '([' + ENDING_DELIMITERS + '])';
 var ASSET_PATH_START    = '([^' + ENDING_DELIMITERS + ']*';

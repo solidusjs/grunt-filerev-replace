@@ -2,7 +2,7 @@
   "name": "grunt-filerev-replace",
   "description": "Replace references to grunt-filerev files.",
   "version": "0.1.0",
-  "homepage": "https://github.com/SparkartGroupInc/grunt-filerev-replace",
+  "homepage": "https://github.com/solidusjs/grunt-filerev-replace",
   "author": {
     "name": "Joannic Laborde",
     "email": "joannic@sparkart.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SparkartGroupInc/grunt-filerev-replace.git"
+    "url": "https://github.com/solidusjs/grunt-filerev-replace.git"
   },
   "bugs": {
-    "url": "https://github.com/SparkartGroupInc/grunt-filerev-replace/issues"
+    "url": "https://github.com/solidusjs/grunt-filerev-replace/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/SparkartGroupInc/grunt-filerev-replace/blob/master/LICENSE-MIT"
+      "url": "https://github.com/solidusjs/grunt-filerev-replace/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
