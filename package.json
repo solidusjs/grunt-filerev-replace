@@ -1,7 +1,7 @@
 {
   "name": "grunt-filerev-replace",
   "description": "Replace references to grunt-filerev files.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/solidusjs/grunt-filerev-replace",
   "author": {
     "name": "Joannic Laborde",
