@@ -10,12 +10,9 @@
 
 var path = require('path');
 
-var STARTING_DELIMITERS = '\'"\\(';
-var ENDING_DELIMITERS   = '\'"\\)\\?#';
-var STARTING_DELIMITER  = '([' + STARTING_DELIMITERS + '])';
-var ENDING_DELIMITER    = '([' + ENDING_DELIMITERS + '])';
-var ASSET_PATH_START    = '([^' + ENDING_DELIMITERS + ']*';
-var ASSET_PATH_END      = '[^' + ENDING_DELIMITERS + ']*)';
+var STARTING_DELIMITER = '(\\\\?\'|\\\\?"|\\\\?\\()';
+var ALLOWED_PATH_CHARS = '[^\'"\\(\\)\\?#]*?'; // Lazy, in order not to eat the optional starting character of ENDING_DELIMITER
+var ENDING_DELIMITER   = '(\\\\?\'|\\\\?"|\\\\?\\)|\\?|#)';
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('filerev_replace', 'Replace references to grunt-filerev files.', function() {
@@ -49,7 +46,7 @@ module.exports = function(grunt) {
 
   function asset_path_regexp( asset_path ) {
     return new RegExp( STARTING_DELIMITER + // p1
-                       ASSET_PATH_START + escape_for_regexp( path.basename( asset_path ) ) + ASSET_PATH_END + // p2
+                       '(' + ALLOWED_PATH_CHARS + escape_for_regexp( path.basename( asset_path ) ) + ALLOWED_PATH_CHARS + ')' + // p2
                        ENDING_DELIMITER, // p3
                        'ig' );
   }

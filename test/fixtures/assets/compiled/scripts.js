@@ -12,6 +12,9 @@ var path = '<img src="/images/ajax-loader.gif" />';
 var path = "var path = '/images/ajax-loader.gif';";
 var path = '/images/ajax-loader.gif', path = "/images/ajax-loader.gif";
 
+// Escaped delimiters
+var path = "body { background: url(\"/images/ajax-loader.gif\"); }";
+
 // Case insensitive
 var path = '/IMAGES/ajax-loader.gif';
 

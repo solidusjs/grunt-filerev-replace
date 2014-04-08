@@ -12,6 +12,9 @@ body { background: url(/images/ajax-loader.gif); }
 body { background: url( /images/ajax-loader.gif    ); }
 body { background: url('/images/ajax-loader.gif'); background: url("/images/ajax-loader.gif"); }
 
+/* Escaped delimiters */
+body { content: "<img src=\"/images/ajax-loader.gif\" />"; }
+
 /* Case insensitive */
 body { background: url('/IMAGES/ajax-loader.gif'); }
 
