@@ -9,6 +9,7 @@
 'use strict';
 
 var path = require('path');
+var slash = require('slash');
 
 var STARTING_DELIMITER = '(\\\\?\'|\\\\?"|\\\\?\\()';
 var ALLOWED_PATH_CHARS = '[^\'"\\(\\)\\?#]*?'; // Lazy, in order not to eat the optional starting character of ENDING_DELIMITER
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
   // root => 'tmp/assets'
   // returns => '/images/ajax-loader.gif'
   function file_path_to_web_path( file_path, root ) {
-    return path.join( '/', path.relative( root, file_path ) );
+    return slash( path.join( '/', path.relative( root, file_path ) ) );
   }
 
   function asset_path_regexp( asset_path ) {
