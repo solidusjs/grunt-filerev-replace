@@ -28,11 +28,11 @@ module.exports = function(grunt) {
     });
   });
 
-  function filerev_summary_to_assets_paths( assets_root, use_relative_root ) {
+  function filerev_summary_to_assets_paths( assets_root ) {
     var assets = {};
     for( var path in grunt.filerev.summary ){
-      var src = file_path_to_web_path( path, assets_root, use_relative_root );
-      var dest = file_path_to_web_path( grunt.filerev.summary[path], assets_root, use_relative_root );
+      var src = file_path_to_web_path( path, assets_root );
+      var dest = file_path_to_web_path( grunt.filerev.summary[path], assets_root );
       var regexp = asset_path_regexp( src );
       assets[src] = { dest: dest, regexp: regexp };
     }
