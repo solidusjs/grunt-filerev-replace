@@ -16,15 +16,16 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
-        '<%= nodeunit.tests %>',
+        '<%= nodeunit.normal %>',
+        '<%= nodeunit.relative %>'
       ],
       options: {
-        jshintrc: '.jshintrc',
-      },
+        jshintrc: '.jshintrc'
+      }
     },
 
     clean: {
-      tests: ['tmp'],
+      tests: ['tmp']
     },
 
     copy: {
@@ -48,13 +49,27 @@ module.exports = function(grunt) {
           views_root: 'tmp/views/'
         },
         src: 'tmp/views/**/*.html'
+      },
+      relative_compiled_assets: {
+          options: {
+              use_relative_root: true
+          },
+          src: 'tmp/assets/compiled/*.{css,js}'
+      },
+      relative_views: {
+        options: {
+            use_relative_root: true,
+            views_root: 'tmp/views/'
+        },
+        src: 'tmp/views/**/*.html'
       }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+        normal: ['test/filerev_replace_test.js'],
+        relative:['test/filerev_replace_relative_test.js']
+    }
 
   });
 
@@ -70,9 +85,10 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'copy', 'filerev', 'filerev_replace', 'nodeunit', 'clean']);
+  grunt.registerTask('test-normal', ['clean', 'copy', 'filerev', 'filerev_replace:compiled_assets', 'filerev_replace:views', 'nodeunit:normal', 'clean']);
+  grunt.registerTask('test-relative', ['clean', 'copy', 'filerev', 'filerev_replace:relative_compiled_assets', 'filerev_replace:relative_views', 'nodeunit:relative', 'clean']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['jshint', 'test-normal', 'test-relative']);
 
 };
