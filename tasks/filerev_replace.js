@@ -12,7 +12,7 @@ var path = require('path');
 var slash = require('slash');
 
 var STARTING_DELIMITER = '(\\\\?\'|\\\\?"|\\\\?\\()';
-var ALLOWED_PATH_CHARS = '[^\'"\\(\\)\\?#]*?'; // Lazy, in order not to eat the optional starting character of ENDING_DELIMITER
+var ALLOWED_PATH_CHARS = '([^\'"\\(\\)\\?#]*?)'; // Lazy, in order not to eat the optional starting character of ENDING_DELIMITER
 var ENDING_DELIMITER   = '(\\\\?\'|\\\\?"|\\\\?\\)|\\?|#)';
 
 module.exports = function(grunt) {
@@ -29,9 +29,9 @@ module.exports = function(grunt) {
 
   function filerev_summary_to_assets_paths( assets_root ) {
     var assets = {};
-    for( var path in grunt.filerev.summary ){
-      var src = file_path_to_web_path( path, assets_root );
-      var dest = file_path_to_web_path( grunt.filerev.summary[path], assets_root );
+    for( var filerev_path in grunt.filerev.summary ){
+      var src = file_path_to_web_path( filerev_path, assets_root );
+      var dest = path.basename( grunt.filerev.summary[filerev_path] );
       var regexp = asset_path_regexp( src );
       assets[src] = { dest: dest, regexp: regexp };
     }
@@ -47,8 +47,10 @@ module.exports = function(grunt) {
 
   function asset_path_regexp( asset_path ) {
     return new RegExp( STARTING_DELIMITER + // p1
-                       '(' + ALLOWED_PATH_CHARS + escape_for_regexp( path.basename( asset_path ) ) + ALLOWED_PATH_CHARS + ')' + // p2
-                       ENDING_DELIMITER, // p3
+                       ALLOWED_PATH_CHARS + // p2
+                       '(' + escape_for_regexp( path.basename( asset_path ) ) + ')' + // p3
+                       ALLOWED_PATH_CHARS + // p4
+                       ENDING_DELIMITER, // p5
                        'ig' );
   }
 
@@ -60,12 +62,12 @@ module.exports = function(grunt) {
     var view = grunt.file.read( view_src );
     var changes = [];
 
-    var replace_string = function( match, p1, p2, p3 ) {
-      var asset_path = absolute_asset_path( p2, view_src, views_root );
+    var replace_string = function( match, p1, p2, p3, p4, p5 ) {
+      var asset_path = absolute_asset_path( p2 + p3 + p4, view_src, views_root );
 
       if( grunt.file.arePathsEquivalent( asset_path.toLowerCase(), asset_src.toLowerCase() ) ) {
         changed = true;
-        return p1 + asset_dest + p3;
+        return p1 + p2 + asset_dest + p4 + p5;
       } else {
         return match;
       }
@@ -88,7 +90,7 @@ module.exports = function(grunt) {
 
   function absolute_asset_path( string, view_src, views_root ) {
     var asset_path = string.trim();
-    if( asset_path[0] != '/' && asset_path[0] != '\\' ) {
+    if( asset_path[0] !== '/' && asset_path[0] !== '\\' ) {
       asset_path = path.join( path.dirname( view_src ), asset_path );
       asset_path = file_path_to_web_path( asset_path, views_root );
     }

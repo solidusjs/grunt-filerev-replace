@@ -2,9 +2,9 @@
 var path = '/images/ajax-loader.4e26f87c.gif';
 
 // Relative path
-var path = '/images/ajax-loader.4e26f87c.gif';
-var path = '/images/ajax-loader.4e26f87c.gif';
-var path = '/images/ajax-loader.4e26f87c.gif';
+var path = '/oops/../images/ajax-loader.4e26f87c.gif';
+var path = '../images/ajax-loader.4e26f87c.gif';
+var path = '../oops/../images/oops/../ajax-loader.4e26f87c.gif';
 
 // Delimiters
 var path = "/images/ajax-loader.4e26f87c.gif";
@@ -16,7 +16,7 @@ var path = '/images/ajax-loader.4e26f87c.gif', path = "/images/ajax-loader.4e26f
 var path = "body { background: url(\"/images/ajax-loader.4e26f87c.gif\"); }";
 
 // Case insensitive
-var path = '/images/ajax-loader.4e26f87c.gif';
+var path = '/IMAGES/ajax-loader.4e26f87c.gif';
 
 // With query string and anchor
 var path = '/images/ajax-loader.4e26f87c.gif?a=b';
