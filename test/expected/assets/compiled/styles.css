@@ -2,21 +2,21 @@
 body { background: url('/images/ajax-loader.4e26f87c.gif'); }
 
 /* Relative path */
-body { background: url('/images/ajax-loader.4e26f87c.gif'); }
-body { background: url('/images/ajax-loader.4e26f87c.gif'); }
-body { background: url('/images/ajax-loader.4e26f87c.gif'); }
+body { background: url('/oops/../images/ajax-loader.4e26f87c.gif'); }
+body { background: url('../images/ajax-loader.4e26f87c.gif'); }
+body { background: url('../oops/../images/oops/../ajax-loader.4e26f87c.gif'); }
 
 /* Delimiters */
 body { background: url("/images/ajax-loader.4e26f87c.gif"); }
 body { background: url(/images/ajax-loader.4e26f87c.gif); }
-body { background: url(/images/ajax-loader.4e26f87c.gif); }
+body { background: url( /images/ajax-loader.4e26f87c.gif    ); }
 body { background: url('/images/ajax-loader.4e26f87c.gif'); background: url("/images/ajax-loader.4e26f87c.gif"); }
 
 /* Escaped delimiters */
 body { content: "<img src=\"/images/ajax-loader.4e26f87c.gif\" />"; }
 
 /* Case insensitive */
-body { background: url('/images/ajax-loader.4e26f87c.gif'); }
+body { background: url('/IMAGES/ajax-loader.4e26f87c.gif'); }
 
 /* With query string and anchor */
 body { background: url('/images/ajax-loader.4e26f87c.gif?a=b'); }
