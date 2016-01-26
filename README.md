@@ -33,7 +33,7 @@ grunt.initConfig({
   filerev_replace: {
     options: {
       assets_root: 'tmp/assets/',
-      cdn_url: ''  // CDN url, leave blank for no url
+      cdn_url: 'http://subdomain.domain.xxx'  // CDN url, leave blank ('') for no url
     },
     compiled_assets: {
       src: 'tmp/assets/compiled/*.{css,js}'
