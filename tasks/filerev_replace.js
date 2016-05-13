@@ -91,8 +91,12 @@ module.exports = function(grunt) {
   function absolute_asset_path( string, view_src, views_root ) {
     var asset_path = string.trim();
     if( asset_path[0] !== '/' && asset_path[0] !== '\\' ) {
-      asset_path = path.join( path.dirname( view_src ), asset_path );
-      asset_path = file_path_to_web_path( asset_path, views_root );
+      if( asset_path[0] === '.' ) {
+        asset_path = path.join( path.dirname( view_src ), asset_path );
+        asset_path = file_path_to_web_path( asset_path, views_root );
+      } else {
+        asset_path = '/' + asset_path;
+      }
     }
     return asset_path;
   }
