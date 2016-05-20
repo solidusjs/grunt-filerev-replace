@@ -32,7 +32,8 @@ grunt.initConfig({
   // Replace references to the images in the compiled js and css files, and the html views
   filerev_replace: {
     options: {
-      assets_root: 'tmp/assets/'
+      assets_root: 'tmp/assets/',
+      cdn_url: 'http://subdomain.domain.xxx'  // CDN url, leave blank ('') for no url
     },
     compiled_assets: {
       src: 'tmp/assets/compiled/*.{css,js}'

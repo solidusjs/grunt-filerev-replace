@@ -20,9 +20,11 @@ module.exports = function(grunt) {
     var assets_root = this.options().assets_root;
     var views_root = this.options().views_root || assets_root;
     var assets_paths = filerev_summary_to_assets_paths( assets_root );
+    var cdn_url = this.options().cdn_url || '';
+
 
     this.files[0].src.forEach( function( view_src ){
-      var changes = replace_assets_paths_in_view( assets_paths, view_src, views_root );
+      var changes = replace_assets_paths_in_view( assets_paths, view_src, views_root, cdn_url );
       log_view_changes( view_src, changes );
     });
   });
@@ -58,7 +60,7 @@ module.exports = function(grunt) {
     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
   }
 
-  function replace_assets_paths_in_view( assets_paths, view_src, views_root ) {
+  function replace_assets_paths_in_view( assets_paths, view_src, views_root, cdn_url ) {
     var view = grunt.file.read( view_src );
     var changes = [];
 
@@ -67,7 +69,7 @@ module.exports = function(grunt) {
 
       if( grunt.file.arePathsEquivalent( asset_path.toLowerCase(), asset_src.toLowerCase() ) ) {
         changed = true;
-        return p1 + p2 + asset_dest + p4 + p5;
+        return p1 + cdn_url + p2 + asset_dest + p4 + p5;
       } else {
         return match;
       }
